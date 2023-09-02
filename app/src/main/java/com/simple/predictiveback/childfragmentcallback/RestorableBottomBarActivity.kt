@@ -18,13 +18,14 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.fragments.ContainerFragment
 import com.simple.predictiveback.navigation.BottomNavigationBar
 import com.simple.predictiveback.navigation.NavigationNavHost
 import com.simple.predictiveback.navigation.TopBar
 import com.simple.predictiveback.ui.theme.PredictiveBackTheme
 
 
-class ChildFragmentCallbackActivity : FragmentActivity() {
+class RestorableBottomBarActivity : FragmentActivity() {
     private var savedStateSparseArray = SparseArray<Fragment.SavedState>()
     private var currentSelectItemId = 0
 
@@ -71,7 +72,7 @@ class ChildFragmentCallbackActivity : FragmentActivity() {
             bottomBar = { BottomNavigationBar(navController) }
         ) { padding ->
             Box(modifier = Modifier.padding(padding)) {
-                NavigationNavHost(navController, ::getCommitFunction)
+                NavigationNavHost(navController, ::getCommitFunction, ContainerFragment::newInstance)
             }
         }
     }

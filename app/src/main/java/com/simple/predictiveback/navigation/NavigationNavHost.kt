@@ -18,7 +18,8 @@ fun NavigationNavHost(
     getCommitFunction: (
         fragment: Fragment,
         tag: String
-    ) -> (FragmentTransaction.(containerId: Int) -> Unit)
+    ) -> (FragmentTransaction.(containerId: Int) -> Unit),
+    newInstance: (title: String, color: String) -> Fragment
 ) {
 
     NavHost(navController, startDestination = NavigationItem.Home.route) {
@@ -27,7 +28,7 @@ fun NavigationNavHost(
                 FragmentContainer(
                     modifier = Modifier.fillMaxSize(),
                     commit = getCommitFunction(
-                        ContainerFragment.newInstance(item.title, item.color),
+                        newInstance(item.title, item.color),
                         item.route
                     )
                 )

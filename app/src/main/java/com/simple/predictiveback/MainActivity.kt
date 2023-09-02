@@ -12,8 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.simple.predictiveback.childfragmentcallback.ChildFragmentCallbackActivity
+import com.simple.predictiveback.childfragmentcallback.RestorableBottomBarActivity
 import com.simple.predictiveback.ui.theme.PredictiveBackTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,7 +38,7 @@ class MainActivity : ComponentActivity() {
                 startActivity(
                     Intent(
                         this@MainActivity,
-                        ChildFragmentCallbackActivity::class.java
+                        RestorableBottomBarActivity::class.java
                     )
                 )
                 finish()
