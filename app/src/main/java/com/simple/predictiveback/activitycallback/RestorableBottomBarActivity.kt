@@ -55,8 +55,7 @@ class RestorableBottomBarActivity : FragmentActivity() {
             }
         }
 
-        onBackPressedDispatcher.addCallback(
-        ) {
+        onBackPressedDispatcher.addCallback(this) {
             supportFragmentManager.fragments.forEach { fragment ->
                 if (fragment != null && fragment.isVisible) {
                     with(fragment.childFragmentManager) {
