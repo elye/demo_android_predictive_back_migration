@@ -1,4 +1,4 @@
-package com.simple.predictiveback.childfragmentcallback
+package com.simple.predictiveback.fragmentcallback
 
 import android.os.Bundle
 import android.util.Log
@@ -31,12 +31,6 @@ class ChildFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             view.findViewById<TextView>(R.id.child_text_title).text = it.getString(KEY)
-        }
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            owner = viewLifecycleOwner
-        ) {
-            parentFragment?.childFragmentManager?.popBackStack()
         }
     }
 

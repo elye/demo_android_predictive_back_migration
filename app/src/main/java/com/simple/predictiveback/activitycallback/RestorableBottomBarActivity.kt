@@ -1,7 +1,9 @@
-package com.simple.predictiveback.childfragmentcallback
+package com.simple.predictiveback.activitycallback
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.SparseArray
+import androidx.activity.addCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +23,7 @@ import com.simple.predictiveback.navigation.BottomNavigationBar
 import com.simple.predictiveback.navigation.NavigationNavHost
 import com.simple.predictiveback.navigation.TopBar
 import com.simple.predictiveback.ui.theme.PredictiveBackTheme
+
 
 class RestorableBottomBarActivity : FragmentActivity() {
     private var savedStateSparseArray = SparseArray<Fragment.SavedState>()
@@ -51,6 +54,23 @@ class RestorableBottomBarActivity : FragmentActivity() {
                 }
             }
         }
+
+        onBackPressedDispatcher.addCallback(
+        ) {
+            supportFragmentManager.fragments.forEach { fragment ->
+                if (fragment != null && fragment.isVisible) {
+                    with(fragment.childFragmentManager) {
+                        if (backStackEntryCount > 0) {
+                            popBackStack()
+                            return@addCallback
+                        }
+                    }
+                }
+            }
+
+            this@addCallback.remove()
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -59,9 +79,9 @@ class RestorableBottomBarActivity : FragmentActivity() {
         outState.putInt(SAVED_STATE_CURRENT_TAB_KEY, currentSelectItemId)
     }
 
-    @Override
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     fun MainScreen() {
         val navController = rememberNavController()
         Scaffold(

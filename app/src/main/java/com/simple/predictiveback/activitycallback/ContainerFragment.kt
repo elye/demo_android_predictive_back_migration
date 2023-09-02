@@ -1,4 +1,4 @@
-package com.simple.predictiveback.childfragmentcallback
+package com.simple.predictiveback.activitycallback
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import com.simple.predictiveback.R
 

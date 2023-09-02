@@ -1,4 +1,4 @@
-package com.simple.predictiveback.childfragmentcallback
+package com.simple.predictiveback.fragmentcallback
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import com.simple.predictiveback.R
 
@@ -51,6 +52,23 @@ class ContainerFragment : Fragment() {
                     .addToBackStack(childKey)
                     .commit()
             }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            owner = viewLifecycleOwner
+        ) {
+            requireActivity().supportFragmentManager.fragments.forEach { fragment ->
+                if (fragment != null && fragment.isVisible) {
+                    with(fragment.childFragmentManager) {
+                        if (backStackEntryCount > 0) {
+                            popBackStack()
+                            return@addCallback
+                        }
+                    }
+                }
+            }
+
+            this@addCallback.remove()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
         childFragmentManager.addOnBackStackChangedListener { count = childFragmentManager.backStackEntryCount }
     }
