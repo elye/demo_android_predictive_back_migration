@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activityclassic.RestorableBottomBarActivity" />
         <activity android:name=".activitycallback.RestorableBottomBarActivity" />
         <activity android:name=".fragmentcallback.RestorableBottomBarActivity" />
         <activity android:name=".childfragmentcallback.RestorableBottomBarActivity" />

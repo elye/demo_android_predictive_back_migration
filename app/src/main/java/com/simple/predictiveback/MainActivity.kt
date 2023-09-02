@@ -37,6 +37,17 @@ class MainActivity : ComponentActivity() {
                 startActivity(
                     Intent(
                         this@MainActivity,
+                        com.simple.predictiveback.activityclassic.RestorableBottomBarActivity::class.java
+                    )
+                )
+                finish()
+            }) {
+                Text("Activity with onBackPressed")
+            }
+            Button(onClick = {
+                startActivity(
+                    Intent(
+                        this@MainActivity,
                         com.simple.predictiveback.activitycallback.RestorableBottomBarActivity::class.java
                     )
                 )
