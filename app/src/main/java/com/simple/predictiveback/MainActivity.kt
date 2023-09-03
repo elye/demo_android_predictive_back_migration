@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                 )
                 finish()
             }) {
-                Text("Activity Back Callback Setup")
+                Text("Activity onBackPressedDispatcher Callback Setup")
             }
             Button(onClick = {
                 startActivity(
@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
                 )
                 finish()
             }) {
-                Text("Fragment Back Callback Setup")
+                Text("Fragment onBackPressedDispatcher Callback Setup")
             }
             Button(onClick = {
                 startActivity(
@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
                 )
                 finish()
             }) {
-                Text("Child Fragment Back Callback Setup")
+                Text("Child Fragment onBackPressedDispatcher Callback Setup")
             }
         }
     }
